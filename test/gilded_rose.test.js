@@ -14,4 +14,15 @@ describe("Gilded Rose", function() {
     const outOfDateItem = gildedRose.updateQuality();
     expect(outOfDateItem[0].quality).toEqual(7);
   });
+
+  it("the quality of an item does not decrease below 0", () => {
+    const gildedRose = new Shop([new Item("foo", 1, 0)]);
+    positiveSellIn = gildedRose.updateQuality();
+    expect(positiveSellIn[0].quality).toEqual(0);
+    neutralSellIn = gildedRose.updateQuality();
+    expect(positiveSellIn[0].quality).toEqual(0);
+    negativeSellIn = gildedRose.updateQuality();
+    expect(positiveSellIn[0].quality).toEqual(0);
+  })
+
 });
