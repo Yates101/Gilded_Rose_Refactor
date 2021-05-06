@@ -31,4 +31,17 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toBeGreaterThan(0);
   });
 
+  it("the quality of an item is never greater than 50", () => {
+    const gildedRose = new Shop(
+      [new Item("foo", 10, 50), 
+      new Item("Aged Brie", 10, 50), 
+      new Item("Sulfuras, Hand of Ragnaros", 10, 50),
+      new Item("Backstage passes to a TAFKAL80ETC concert", 10, 50)
+    ]);
+    const items = gildedRose.updateQuality();
+    items.forEach(item => {
+      expect(item.quality).toBeLessThan(51);
+    });
+  });
+
 });
