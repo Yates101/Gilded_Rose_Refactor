@@ -70,5 +70,11 @@ describe("Gilded Rose", function() {
       const items = gildedRose.updateQuality();
       expect(items[0].quality).toEqual(8);
     })
+
+    it("degrades in quality twice as fast as normal items, when sellIn has passed 0", () => {
+      const gildedRose = new Shop([new Item("Conjured", 0, 10)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(6);
+    })
   })
 });
